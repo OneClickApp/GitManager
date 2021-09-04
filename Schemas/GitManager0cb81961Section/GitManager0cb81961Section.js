@@ -612,7 +612,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					
 					var serviceResponse = JSON.parse(res.GetChangedItemsResult);
 					var fileList = serviceResponse.Files;
-					var currentBranch = serviceResponse.CurrentBranch;
+					var currentBranch = serviceResponse.CurrentBranch; 
 					
 					this.set("CurrentBranch", currentBranch);
 					

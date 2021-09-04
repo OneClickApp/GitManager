@@ -261,7 +261,7 @@ namespace Terrasoft.Configuration
 			if (!addItemsToCommitResult.Success)
 			{
 				return addItemsToCommitResult.ErrorDescription;
-			}
+			} 
 			var gitCommitResult = git.GitCommit(comment);
 			if (!gitCommitResult.Success)
 			{
