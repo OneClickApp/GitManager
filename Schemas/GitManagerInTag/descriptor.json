@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "188dcf45-4ab3-4db4-8358-5c9ee687e2b3",
+    "Name": "GitManagerInTag",
+    "ModifiedOnUtc": "\/Date(1630511189000)\/",
+    "Parent": {
+      "UId": "5894a2b0-51d5-419a-82bb-238674634270",
+      "Name": "BaseEntityInTag"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Тег в записи раздела Git Manager",
+    "DependsOn": []
+  }
+}

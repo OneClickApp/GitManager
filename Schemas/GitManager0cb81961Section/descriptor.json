@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "fd8beff3-2662-4ebb-a8f5-c53cc1409e8e",
+    "Name": "GitManager0cb81961Section",
+    "ModifiedOnUtc": "\/Date(1630763452000)\/",
+    "Parent": {
+      "UId": "7912fb69-4fee-429f-8b23-93943c35d66d",
+      "Name": "BaseSectionV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Схема раздела: \"Git Manager\""
+  }
+}

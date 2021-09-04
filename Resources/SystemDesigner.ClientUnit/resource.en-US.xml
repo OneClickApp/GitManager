@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="en-US">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Дизайнер системы" />
+			<Item Name="LocalizableStrings.AdminFileManagerLinkCaption.Value" Value="File manager" />
+			<Item Name="LocalizableStrings.ChatSettingsCaption.Value" Value="Chats settings" />
+			<Item Name="LocalizableStrings.CsConsoleProcessLinkCaption.Value" Value="C# executor" />
+			<Item Name="LocalizableStrings.DuplicatesSettingsLinkCaption.Value" Value="Setup duplicates rules" />
+			<Item Name="LocalizableStrings.EsqFiltersHelperProcessLinkCaption.Value" Value="ESQ Filters Helper" />
+			<Item Name="LocalizableStrings.ExtAccessSectionCaption.Value" Value="External access" />
+			<Item Name="LocalizableStrings.FileImportLinkCaption.Value" Value="Data import" />
+			<Item Name="LocalizableStrings.GitManagerLinkCaption.Value" Value="Git Manager" />
+			<Item Name="LocalizableStrings.LanguageSectionCaption.Value" Value="Languages" />
+			<Item Name="LocalizableStrings.LdapLinkCaption.Value" Value="LDAP integration setup" />
+			<Item Name="LocalizableStrings.MLModelSectionCaption.Value" Value="ML models" />
+			<Item Name="LocalizableStrings.OAuthSectionCaption.Value" Value="OAuth 2.0 integrated applications" />
+			<Item Name="LocalizableStrings.PortalFunctionalRolesLinkCaption.Value" Value="Portal functional roles" />
+			<Item Name="LocalizableStrings.PortalMainPageManagementLinkCaption.Value" Value="Set up portal main page" />
+			<Item Name="LocalizableStrings.PortalOrganizationalRolesLinkCaption.Value" Value="Portal organizational roles" />
+			<Item Name="LocalizableStrings.PortalOrganizationSetupLinkCaption.Value" Value="Set up portal organization page" />
+			<Item Name="LocalizableStrings.PortalSetupCaption.Value" Value="Portal setup" />
+			<Item Name="LocalizableStrings.PortalUsersLinkCaption.Value" Value="Portal users" />
+			<Item Name="LocalizableStrings.ScoringModelCaption.Value" Value="Scoring models" />
+			<Item Name="LocalizableStrings.SqlConsoleCaption.Value" Value="SQL query console" />
+			<Item Name="LocalizableStrings.SspProfileContactSetupLinkCaption.Value" Value="Set up portal user profile page" />
+			<Item Name="LocalizableStrings.TranslationSectionCaption.Value" Value="Translation" />
+			<Item Name="LocalizableStrings.WebServicesCaption.Value" Value="Web services integration setup" />
+		</Items>
+	</Group>
+</Resources>

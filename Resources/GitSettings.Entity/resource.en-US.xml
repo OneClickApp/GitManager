@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="en-US">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="GitSettings" />
+			<Item Name="Columns.Settings.Caption" Value="Settings" />
+			<Item Name="Columns.SysAdminUnit.Caption" Value="User" />
+			<Item Name="EventsProcessSchema.Caption" Value="Бизнес-процесс" />
+		</Items>
+	</Group>
+</Resources>
