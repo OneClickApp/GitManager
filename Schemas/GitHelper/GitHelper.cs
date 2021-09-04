@@ -109,6 +109,12 @@ namespace Terrasoft.Configuration
 
 			return push;
 		}
+		
+		public OperationResult GitConfig(string email, string name)
+		{
+			RunGit("config --global user.email \"" + email + "\"");
+			return RunGit("config --global user.name \"" + name + "\"");
+		}
 
 		public OperationResult GitCheckout(string branchName)
 		{

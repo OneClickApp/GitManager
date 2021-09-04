@@ -273,7 +273,7 @@ namespace Terrasoft.Configuration
 				return gitPushResult.ErrorDescription;
 			}
 
-			return "OK";
+			return "branch.Result: " + branch.Result + "\r\naddItemsToCommitResult.Result: " + addItemsToCommitResult.Result + "\r\ngitCommitResult.Result: " + gitCommitResult.Result + "\r\ngitPushResult.Result: " + gitPushResult.Result + "\r\n";
 		}
 
 		[OperationContract]
@@ -292,7 +292,15 @@ namespace Terrasoft.Configuration
 			}
 			entity.SetColumnValue("Settings", settings);
 			entity.Save();
+			
+			var settingsDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(settings);
 
+			if (settingsDict.ContainsKey("email") && settingsDict.ContainsKey("name"))
+			{
+				var git = new GitHelper(WorkingDirectory);
+				git.GitConfig(settingsDict["email"].ToString(), settingsDict["name"].ToString());
+			}
+			
 			return "OK";
 		}
 
