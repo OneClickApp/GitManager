@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "c25124b9-8924-40f8-8eeb-ecd27253a9f3",
+    "Name": "GitManager1Page",
+    "ModifiedOnUtc": "\/Date(1630511184000)\/",
+    "Parent": {
+      "UId": "d62293c0-7f14-44b1-b547-735fb40499cd",
+      "Name": "BaseModulePageV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Страница редактирования: \"Git Manager\"",
+    "DependsOn": []
+  }
+}

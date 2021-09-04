@@ -1,0 +1,25 @@
+﻿{
+  "Descriptor": {
+    "UId": "854ed3a0-ee0a-d8ae-af48-003f16924c0e",
+    "Name": "GitManager",
+    "ModifiedOnUtc": "\/Date(1630511060000)\/",
+    "Maintainer": "Custom",
+    "DependsOn": [
+      {
+        "UId": "5be3998b-c5c3-42bb-a01c-2e4149059a97",
+        "PackageVersion": "7.8.0",
+        "Name": "Base"
+      },
+      {
+        "UId": "613fd913-be03-46ce-909b-f44e4225469e",
+        "PackageVersion": "7.8.0",
+        "Name": "UIv2"
+      },
+      {
+        "UId": "c3748e81-246e-4293-85a1-d88d3ab9ff4d",
+        "PackageVersion": "7.8.0",
+        "Name": "Wizards"
+      }
+    ]
+  }
+}

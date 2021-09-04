@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "15f6c488-1dfb-4272-9ea8-ef15beaf031e",
+    "Name": "GitManagerFile",
+    "ModifiedOnUtc": "\/Date(1630511186000)\/",
+    "Parent": {
+      "UId": "556c5867-60a7-4456-aae1-a57a122bef70",
+      "Name": "File"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Файл и ссылка объекта Git Manager",
+    "DependsOn": []
+  }
+}

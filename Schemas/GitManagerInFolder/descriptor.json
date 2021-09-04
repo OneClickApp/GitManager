@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "b45579ee-85d0-4b47-a9e7-828ec182b22c",
+    "Name": "GitManagerInFolder",
+    "ModifiedOnUtc": "\/Date(1630511188000)\/",
+    "Parent": {
+      "UId": "4f63bafb-e9e7-4082-b92e-66b97c14017c",
+      "Name": "BaseItemInFolder"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Git Manager в группе",
+    "DependsOn": []
+  }
+}

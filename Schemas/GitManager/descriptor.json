@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "e0d82bc3-0f52-4714-80fe-072906731f01",
+    "Name": "GitManager",
+    "ModifiedOnUtc": "\/Date(1630763271000)\/",
+    "Parent": {
+      "UId": "1bab9dcf-17d5-49f8-9536-8e0064f1dce0",
+      "Name": "BaseEntity"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Git Manager"
+  }
+}

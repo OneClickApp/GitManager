@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="LocalizableStrings.AdminFileManagerLinkCaption.Value" Value="Файловый менеджер" />
+			<Item Name="LocalizableStrings.ChatSettingsCaption.Value" Value="Настройка чатов" />
+			<Item Name="LocalizableStrings.CsConsoleProcessLinkCaption.Value" Value="C# executor" />
+			<Item Name="LocalizableStrings.DuplicatesSettingsLinkCaption.Value" Value="Правила поиска дублей" />
+			<Item Name="LocalizableStrings.EsqFiltersHelperProcessLinkCaption.Value" Value="ESQ Filters Helper" />
+			<Item Name="LocalizableStrings.ExtAccessSectionCaption.Value" Value="Доступ внешних приложений" />
+			<Item Name="LocalizableStrings.FileImportLinkCaption.Value" Value="Импорт данных" />
+			<Item Name="LocalizableStrings.GitManagerLinkCaption.Value" Value="Git Manager" />
+			<Item Name="LocalizableStrings.LanguageSectionCaption.Value" Value="Языки" />
+			<Item Name="LocalizableStrings.LdapLinkCaption.Value" Value="Настройка интеграции с LDAP" />
+			<Item Name="LocalizableStrings.MLModelSectionCaption.Value" Value="Модели машинного обучения" />
+			<Item Name="LocalizableStrings.OAuthSectionCaption.Value" Value="Интеграции с OAuth 2.0 авторизацией" />
+			<Item Name="LocalizableStrings.PortalFunctionalRolesLinkCaption.Value" Value="Функциональные роли на портале" />
+			<Item Name="LocalizableStrings.PortalMainPageManagementLinkCaption.Value" Value="Настройка главной страницы портала" />
+			<Item Name="LocalizableStrings.PortalOrganizationalRolesLinkCaption.Value" Value="Организационные роли на портале" />
+			<Item Name="LocalizableStrings.PortalOrganizationSetupLinkCaption.Value" Value="Настройка страницы профиля организации" />
+			<Item Name="LocalizableStrings.PortalSetupCaption.Value" Value="Настройка портала" />
+			<Item Name="LocalizableStrings.PortalUsersLinkCaption.Value" Value="Пользователи портала" />
+			<Item Name="LocalizableStrings.ScoringModelCaption.Value" Value="Скоринговые модели" />
+			<Item Name="LocalizableStrings.SqlConsoleCaption.Value" Value="Консоль SQL запросов" />
+			<Item Name="LocalizableStrings.SspProfileContactSetupLinkCaption.Value" Value="Настройка страницы профиля пользователя портала" />
+			<Item Name="LocalizableStrings.TranslationSectionCaption.Value" Value="Переводы" />
+			<Item Name="LocalizableStrings.WebServicesCaption.Value" Value="Настройка интеграции с веб-сервисами" />
+		</Items>
+	</Group>
+</Resources>
