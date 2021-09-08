@@ -125,11 +125,15 @@ namespace Terrasoft.Configuration
 						Uri url = new Uri(settings["repoUrl"].ToString());
 						string scheme = url.GetLeftPart(UriPartial.Scheme);
 						repoUrl = repoUrl.Replace(scheme, "");
-						repoUrl = $"{scheme}://{login}:{password}@{repoUrl}";
+						repoUrl = $"{scheme}{login}:{password}@{repoUrl}";
 						return repoUrl;
 					}
-					else
+					else if (settings.ContainsKey("repoUrl"))
 					{
+						return settings["repoUrl"].ToString();
+					}
+					else
+					{ 
 						return "";
 					}
 				}
@@ -295,10 +299,16 @@ namespace Terrasoft.Configuration
 			
 			var settingsDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(settings);
 
+			var git = new GitHelper(WorkingDirectory);
+
 			if (settingsDict.ContainsKey("email") && settingsDict.ContainsKey("name"))
 			{
-				var git = new GitHelper(WorkingDirectory);
 				git.GitConfig(settingsDict["email"].ToString(), settingsDict["name"].ToString());
+			}
+
+			if (RepoUrl != "")
+			{
+				git.GitRemoteAdd(RepoUrl);
 			}
 			
 			return "OK";
