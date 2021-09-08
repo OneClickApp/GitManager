@@ -53,7 +53,7 @@ namespace Terrasoft.Configuration
 
 		public OperationResult GitPull(string branch)
 		{
-			return RunGit("git pull origin " + branch);
+			return RunGit("pull origin " + branch);
 		}
 
 		public OperationResult GitGetCurrentBranch()
@@ -108,6 +108,12 @@ namespace Terrasoft.Configuration
 			}
 
 			return push;
+		}
+		
+		public OperationResult GitConfig(string email, string name)
+		{
+			RunGit("config --global user.email \"" + email + "\"");
+			return RunGit("config --global user.name \"" + name + "\"");
 		}
 
 		public OperationResult GitCheckout(string branchName)
@@ -262,10 +268,11 @@ namespace Terrasoft.Configuration
 			result.Success = true;
 			result.Result = strOutput;
 
-			if (strError.IndexOf("error") != -1)
+			if (strError.IndexOf("error") != -1 || strError.IndexOf("fatal") != -1)
 			{
 				result.Success = false;
 				result.ErrorDescription = strError;
+				result.Result += "\r\n" + strError;
 			}
 			else
 			{

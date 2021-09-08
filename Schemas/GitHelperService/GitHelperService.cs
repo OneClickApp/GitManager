@@ -125,11 +125,15 @@ namespace Terrasoft.Configuration
 						Uri url = new Uri(settings["repoUrl"].ToString());
 						string scheme = url.GetLeftPart(UriPartial.Scheme);
 						repoUrl = repoUrl.Replace(scheme, "");
-						repoUrl = $"http://{login}:{password}@{repoUrl}";
+						repoUrl = $"{scheme}{login}:{password}@{repoUrl}";
 						return repoUrl;
 					}
-					else
+					else if (settings.ContainsKey("repoUrl"))
 					{
+						return settings["repoUrl"].ToString();
+					}
+					else
+					{ 
 						return "";
 					}
 				}
@@ -273,7 +277,7 @@ namespace Terrasoft.Configuration
 				return gitPushResult.ErrorDescription;
 			}
 
-			return "OK";
+			return "branch.Result: " + branch.Result + "\r\naddItemsToCommitResult.Result: " + addItemsToCommitResult.Result + "\r\ngitCommitResult.Result: " + gitCommitResult.Result + "\r\ngitPushResult.Result: " + gitPushResult.Result + "\r\n";
 		}
 
 		[OperationContract]
@@ -292,7 +296,21 @@ namespace Terrasoft.Configuration
 			}
 			entity.SetColumnValue("Settings", settings);
 			entity.Save();
+			
+			var settingsDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(settings);
 
+			var git = new GitHelper(WorkingDirectory);
+
+			if (settingsDict.ContainsKey("email") && settingsDict.ContainsKey("name"))
+			{
+				git.GitConfig(settingsDict["email"].ToString(), settingsDict["name"].ToString());
+			}
+
+			if (RepoUrl != "")
+			{
+				git.GitRemoteAdd(RepoUrl);
+			}
+			
 			return "OK";
 		}
 

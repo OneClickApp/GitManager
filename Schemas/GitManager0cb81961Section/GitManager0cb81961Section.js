@@ -405,6 +405,8 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					this.settings.setUnique = args.setUnique.value;
 					this.settings.repoUrl = args.repoUrl.value;
 					this.settings.login = args.login.value;
+					this.settings.name = args.name.value;
+					this.settings.email = args.email.value;
 					if(args.password.value !== "******"){
 						this.settings.password = args.password.value;
 					}else{
@@ -463,6 +465,16 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 							dataValueType: Terrasoft.DataValueType.BOOLEAN,
 							caption: "Добавлять уникальность к ветке",
 							value: this.settings.setUnique
+						},
+						name: {
+							dataValueType: Terrasoft.DataValueType.TEXT,
+							caption: "Отображаемое имя",
+							value: this.settings.name
+						},
+						email: {
+							dataValueType: Terrasoft.DataValueType.TEXT,
+							caption: "Email",
+							value: this.settings.email
 						},
 						login: {
 							dataValueType: Terrasoft.DataValueType.TEXT,
@@ -600,7 +612,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					
 					var serviceResponse = JSON.parse(res.GetChangedItemsResult);
 					var fileList = serviceResponse.Files;
-					var currentBranch = serviceResponse.CurrentBranch;
+					var currentBranch = serviceResponse.CurrentBranch; 
 					
 					this.set("CurrentBranch", currentBranch);
 					
