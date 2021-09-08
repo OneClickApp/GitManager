@@ -125,7 +125,7 @@ namespace Terrasoft.Configuration
 						Uri url = new Uri(settings["repoUrl"].ToString());
 						string scheme = url.GetLeftPart(UriPartial.Scheme);
 						repoUrl = repoUrl.Replace(scheme, "");
-						repoUrl = $"http://{login}:{password}@{repoUrl}";
+						repoUrl = $"{scheme}://{login}:{password}@{repoUrl}";
 						return repoUrl;
 					}
 					else
@@ -261,7 +261,7 @@ namespace Terrasoft.Configuration
 			if (!addItemsToCommitResult.Success)
 			{
 				return addItemsToCommitResult.ErrorDescription;
-			} 
+			}
 			var gitCommitResult = git.GitCommit(comment);
 			if (!gitCommitResult.Success)
 			{
