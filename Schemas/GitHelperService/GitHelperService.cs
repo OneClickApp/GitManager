@@ -87,7 +87,7 @@ namespace Terrasoft.Configuration
 				{
 					return DateTime.Now.ToString("yyMMdd") + Convert.ToInt32((DateTime.Now - DateTime.Now.Date).TotalSeconds).ToString();
 				}
-				else 
+				else
 				{
 					return "";
 				}
@@ -133,7 +133,7 @@ namespace Terrasoft.Configuration
 						return settings["repoUrl"].ToString();
 					}
 					else
-					{ 
+					{
 						return "";
 					}
 				}
@@ -176,7 +176,7 @@ namespace Terrasoft.Configuration
 			//{
 			//	return "branch error: " + branch.ErrorDescription + "\r\n" + branch.Result;
 			//}
-			return "OK";
+			return $"OK";
 		}
 
 		[OperationContract]
@@ -256,7 +256,8 @@ namespace Terrasoft.Configuration
 
 			foreach (var item in items)
 			{
-				gitItems.Add(new GitHelper.GitItem() {
+				gitItems.Add(new GitHelper.GitItem()
+				{
 					FullPath = item
 				});
 			}
@@ -296,7 +297,7 @@ namespace Terrasoft.Configuration
 			}
 			entity.SetColumnValue("Settings", settings);
 			entity.Save();
-			
+
 			var settingsDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(settings);
 
 			var git = new GitHelper(WorkingDirectory);
@@ -310,7 +311,7 @@ namespace Terrasoft.Configuration
 			{
 				git.GitRemoteAdd(RepoUrl);
 			}
-			
+
 			return "OK";
 		}
 
