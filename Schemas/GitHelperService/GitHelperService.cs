@@ -278,7 +278,7 @@ namespace Terrasoft.Configuration
 				return gitPushResult.ErrorDescription;
 			}
 
-			return "branch.Result: " + branch.Result + "\r\naddItemsToCommitResult.Result: " + addItemsToCommitResult.Result + "\r\ngitCommitResult.Result: " + gitCommitResult.Result + "\r\ngitPushResult.Result: " + gitPushResult.Result + "\r\n";
+			return "OK";
 		}
 
 		[OperationContract]
