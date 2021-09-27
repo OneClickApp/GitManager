@@ -77,7 +77,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 			
 			serverLoggerListener: function(scope, message){
 				if(message.Header && message.Header.Sender === "GitManager"){
-					console.log(JSON.parse(message.Body));
+					console.log("%c" + JSON.parse(message.Body), "background: #222; color: #bada55");
                 }
 			},
 			
