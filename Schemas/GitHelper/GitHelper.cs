@@ -9,7 +9,7 @@ namespace Terrasoft.Configuration
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Converters;
 	using System.Threading;
-
+	using Terrasoft.Messaging.Common;
 	public class GitHelper
 	{
 		string workingDirectory;
@@ -53,7 +53,7 @@ namespace Terrasoft.Configuration
 
 		public OperationResult GitPull(string branch)
 		{
-			return RunGit("pull origin " + branch);
+			return RunGit("pull -v --progress origin " + branch);
 		}
 
 		public OperationResult GitGetCurrentBranch()
@@ -109,11 +109,11 @@ namespace Terrasoft.Configuration
 
 			return push;
 		}
-		
+
 		public OperationResult GitConfig(string email, string name)
 		{
-			RunGit("config --global user.email \"" + email + "\"");
-			return RunGit("config --global user.name \"" + name + "\"");
+			RunGit("config user.email \"" + email + "\"");
+			return RunGit("config user.name \"" + name + "\"");
 		}
 
 		public OperationResult GitCheckout(string branchName)
@@ -249,6 +249,11 @@ namespace Terrasoft.Configuration
 
 		private OperationResult RunGit(string command)
 		{
+			var logString = "";
+
+			logString += $"command: {command}\r\n";
+			logString += $"---------------------------\r\n";
+
 			var result = new OperationResult();
 
 			Process pProcess = new Process();
@@ -262,6 +267,10 @@ namespace Terrasoft.Configuration
 
 			string strOutput = pProcess.StandardOutput.ReadToEnd();
 			string strError = pProcess.StandardError.ReadToEnd();
+
+			logString += $"strOutput: {strOutput}\r\n";
+			logString += $"---------------------------\r\n";
+			logString += $"strError: {strError}\r\n";
 
 			pProcess.WaitForExit();
 
@@ -282,7 +291,45 @@ namespace Terrasoft.Configuration
 				}
 			}
 
+			SendClientMessage(logString);
+
 			return result;
+		}
+
+		class Message : IMsg
+		{
+			public Guid Id { get; set; }
+
+			public IMsgHeader Header { get; set; }
+
+			public object Body { get; set; }
+		}
+		class MessageHeader : IMsgHeader
+		{
+			public string Sender { get; set; }
+			public string BodyTypeName { get; set; }
+		}
+
+		private void SendClientMessage(object message)
+		{
+			foreach (var channel in MsgChannelManager.Instance.Channels.Values)
+			{
+				channel.PostMessage(CreateMessage("Log", message));
+			}
+		}
+
+		private Message CreateMessage(string bodyType, object body)
+		{
+			return new Message()
+			{
+				Id = Guid.NewGuid(),
+				Header = new MessageHeader()
+				{
+					Sender = "GitManager",
+					BodyTypeName = bodyType
+				},
+				Body = JsonConvert.SerializeObject(body)
+			};
 		}
 	}
 }

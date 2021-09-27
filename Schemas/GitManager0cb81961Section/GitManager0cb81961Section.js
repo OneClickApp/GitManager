@@ -72,6 +72,13 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 			init: function(){
 				this.callParent(arguments);
 				this.readSettings();
+				Terrasoft.ServerChannel.on(Terrasoft.EventName.ON_MESSAGE, this.serverLoggerListener, this);
+			},
+			
+			serverLoggerListener: function(scope, message){
+				if(message.Header && message.Header.Sender === "GitManager"){
+					console.log(JSON.parse(message.Body));
+                }
 			},
 			
 			getSectionActions: function() {
