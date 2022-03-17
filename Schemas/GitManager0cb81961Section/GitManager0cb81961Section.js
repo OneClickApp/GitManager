@@ -344,7 +344,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 						data: { items: this.getSelectedPaths(), comment: args.comment.value, branchName: args.branchName.value }
 					}, function(res){
 						this.hideBodyMask();
-                      	debugger;
+                      	window.open(this.settings.repoUrl);
 						if(res.CommitAndPushItemsResult !== "OK"){
 							this.Terrasoft.utils.showInformation(res.CommitAndPushItemsResult);
 						}
