@@ -211,6 +211,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 								},
 								method: "POST",
 								jsonData: null,
+								timeout: 300000,
 								callback: function() {
 									var success = arguments[1];
 									var response = arguments[2];
@@ -246,6 +247,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 									"Content-Type": "application/json"
 								},
 								method: "POST",
+								timeout: 300000,
 								jsonData: null,
 								callback: function() {
 									var success = arguments[1];
@@ -279,6 +281,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					},
 					method: "POST",
 					jsonData: null,
+					timeout: 300000,
 					callback: function() {
 						var success = arguments[1];
 						var response = arguments[2];
@@ -341,6 +344,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 						data: { items: this.getSelectedPaths(), comment: args.comment.value, branchName: args.branchName.value }
 					}, function(res){
 						this.hideBodyMask();
+                      	debugger;
 						if(res.CommitAndPushItemsResult !== "OK"){
 							this.Terrasoft.utils.showInformation(res.CommitAndPushItemsResult);
 						}
@@ -556,9 +560,9 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 			getSelectedPaths: function(){
 				var itemsArr = [];
 				this.$SelectedRows.forEach(function(item){
-					if(this.getGridData().collection.getByKey(item).get("Type") == "File"){
+					//if(this.getGridData().collection.getByKey(item).get("Type") == "File"){
 						itemsArr.push(this.getGridData().collection.getByKey(item).get("FullPath"));
-					}
+					//}
 				}, this);
 				
 				return itemsArr;
