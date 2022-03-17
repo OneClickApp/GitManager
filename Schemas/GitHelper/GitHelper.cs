@@ -53,7 +53,7 @@ namespace Terrasoft.Configuration
 
 		public OperationResult GitPull(string branch)
 		{
-			return RunGit("pull -v --progress origin " + branch);
+			return RunGit("pull -v origin " + branch);
 		}
 
 		public OperationResult GitGetCurrentBranch()
@@ -257,7 +257,7 @@ namespace Terrasoft.Configuration
 			var result = new OperationResult();
 
 			Process pProcess = new Process();
-			pProcess.StartInfo.FileName = "git";
+			pProcess.StartInfo.FileName = @"C:\Program Files\Git\cmd\git.exe";
 			pProcess.StartInfo.Arguments = command;
 			pProcess.StartInfo.UseShellExecute = false;
 			pProcess.StartInfo.RedirectStandardOutput = true;
@@ -272,12 +272,13 @@ namespace Terrasoft.Configuration
 			logString += $"---------------------------\r\n";
 			logString += $"strError: {strError}\r\n";
 
-			pProcess.WaitForExit();
+			pProcess.WaitForExit(6000);
 
 			result.Success = true;
 			result.Result = strOutput;
-
-			if (strError.IndexOf("error") != -1 || strError.IndexOf("fatal") != -1)
+			
+          
+			if (strError.IndexOf("error") != -1 || strError.IndexOf("fatal") != -1 && strError.IndexOf("failed to remember result of host provider detection") == -1)
 			{
 				result.Success = false;
 				result.ErrorDescription = strError;
