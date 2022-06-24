@@ -169,7 +169,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
               
 				actionMenuSubItems.addItem(this.getButtonMenuItem({
 					"Click": {"bindTo": "executeComand"},
-                  	"Tag": "clean",
+                  	"Tag": "clean -f",
 					"Caption": "clean",
 					"Enabled": true,
 					"IsEnabledForSelectedAll": true
@@ -182,7 +182,6 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					"Enabled": { "bindTo": "isAnySelected" },
 					"IsEnabledForSelectedAll": true
 				}));
-				
 				
 				return actionMenuItems;
 			},
