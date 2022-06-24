@@ -175,13 +175,13 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					"IsEnabledForSelectedAll": true
 				}));
               
-              	actionMenuSubItems.addItem(this.getButtonMenuItem({
-					"Click": {"bindTo": "executeComandSelected"},
-                  	"Tag": "--",
-					"Caption": "--",
-					"Enabled": { "bindTo": "isAnySelected" },
-					"IsEnabledForSelectedAll": true
-				}));
+              	//actionMenuSubItems.addItem(this.getButtonMenuItem({
+				//	"Click": {"bindTo": "executeComandSelected"},
+                //  	"Tag": "--",
+				//	"Caption": "--",
+				//	"Enabled": { "bindTo": "isAnySelected" },
+				//	"IsEnabledForSelectedAll": true
+				//}));
 				
 				return actionMenuItems;
 			},
@@ -270,7 +270,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 									"Content-Type": "application/json"
 								},
 								method: "POST",
-								timeout: 300000,
+								timeout: 3000000,
 								jsonData: null,
 								callback: function() {
 									var success = arguments[1];
@@ -304,7 +304,7 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					},
 					method: "POST",
 					jsonData: null,
-					timeout: 300000,
+					timeout: 3000000,
 					callback: function() {
 						var success = arguments[1];
 						var response = arguments[2];
