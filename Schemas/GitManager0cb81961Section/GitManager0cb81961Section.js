@@ -124,7 +124,6 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
               	actionMenuItems.addItem(this.getButtonMenuItem({
 					"Click": {"bindTo": "clone"},
 					"Caption": "Клонировать",
-					"Enabled": { "bindTo": "isRepoSet" },
 					"IsEnabledForSelectedAll": true
 				}));
 				
@@ -495,9 +494,14 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
             },
           
           	clone: function(){
+              	if(!this.isRepoSet()){
+                  	this.Terrasoft.utils.showInformation("Не заданы настройки");
+                	return;
+                }
 				this.showConfirmationDialog("Клонировать репозиторий \"" + this.settings.repoUrl + "\"?",
 					function(result) {
 						if(result === Terrasoft.MessageBoxButtons.YES.returnCode){
+                          	this.showBodyMask();
 							this.callService({
 								serviceName: "GitHelperService",
 								methodName: "GitClone",
