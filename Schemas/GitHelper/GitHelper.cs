@@ -78,6 +78,8 @@ namespace Terrasoft.Configuration
 
 			MoveAllFiles(tempDir, workingDirectory);
 
+			DeleteDirectory(tempDir);
+
 			return result;
 		}
 
@@ -303,6 +305,25 @@ namespace Terrasoft.Configuration
 			}
 		}
 
+		private void DeleteDirectory(string target_dir)
+		{
+			string[] files = Directory.GetFiles(target_dir);
+			string[] dirs = Directory.GetDirectories(target_dir);
+
+			foreach (string file in files)
+			{
+				System.IO.File.SetAttributes(file, FileAttributes.Normal);
+				System.IO.File.Delete(file);
+			}
+
+			foreach (string dir in dirs)
+			{
+				DeleteDirectory(dir);
+			}
+
+			Directory.Delete(target_dir, false);
+		}
+
 		private OperationResult RunGit(string command)
 		{
 			var logString = "";
@@ -311,7 +332,6 @@ namespace Terrasoft.Configuration
 			logString += $"---------------------------\r\n";
 
 			var result = new OperationResult();
-
 			Process pProcess = new Process();
 			pProcess.StartInfo.FileName = @"C:\Program Files\Git\cmd\git.exe";
 			pProcess.StartInfo.Arguments = command;
@@ -332,6 +352,7 @@ namespace Terrasoft.Configuration
 
 			result.Success = true;
 			result.Result = strOutput;
+
 
 			if (strError.IndexOf("error") != -1 || strError.IndexOf("fatal") != -1 && strError.IndexOf("failed to remember result of host provider detection") == -1)
 			{
