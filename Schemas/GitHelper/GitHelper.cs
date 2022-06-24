@@ -74,7 +74,7 @@ namespace Terrasoft.Configuration
 
 			MoveAllFiles(workingDirectory, tempDir);
 
-			var result = RunGit("clone " + repoUrl);
+			var result = RunGit("clone " + repoUrl + " .");
 
 			MoveAllFiles(tempDir, workingDirectory);
 
@@ -332,7 +332,6 @@ namespace Terrasoft.Configuration
 
 			result.Success = true;
 			result.Result = strOutput;
-
 
 			if (strError.IndexOf("error") != -1 || strError.IndexOf("fatal") != -1 && strError.IndexOf("failed to remember result of host provider detection") == -1)
 			{
