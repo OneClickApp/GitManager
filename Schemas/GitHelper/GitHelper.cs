@@ -61,6 +61,11 @@ namespace Terrasoft.Configuration
 			return RunGit("rev-parse --abbrev-ref HEAD");
 		}
 
+		public OperationResult GitExecuteCommand(string command)
+		{
+			return RunGit(command);
+		}
+
 		public OperationResult GitRestore(List<GitItem> items)
 		{
 			foreach (var item in items)
@@ -124,6 +129,11 @@ namespace Terrasoft.Configuration
 		public OperationResult GitPush()
 		{
 			return RunGit("push");
+		}
+
+		public OperationResult GitCleanUp()
+		{
+			return RunGit("clean -f");
 		}
 
 		public OperationResult GitCommit(string comment)
@@ -276,8 +286,8 @@ namespace Terrasoft.Configuration
 
 			result.Success = true;
 			result.Result = strOutput;
-			
-          
+
+
 			if (strError.IndexOf("error") != -1 || strError.IndexOf("fatal") != -1 && strError.IndexOf("failed to remember result of host provider detection") == -1)
 			{
 				result.Success = false;

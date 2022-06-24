@@ -159,6 +159,30 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					"Enabled": { "bindTo": "isAnySelected" },
 					"IsEnabledForSelectedAll": true
 				}));
+              
+              	var actionMenuSubItems = this.Ext.create("Terrasoft.BaseViewModelCollection");
+              
+				actionMenuItems.addItem(this.getButtonMenuItem({
+					"Caption": "Дополнительные команды",
+                  	"Items": actionMenuSubItems
+				}));
+              
+				actionMenuSubItems.addItem(this.getButtonMenuItem({
+					"Click": {"bindTo": "executeComand"},
+                  	"Tag": "clean",
+					"Caption": "clean",
+					"Enabled": true,
+					"IsEnabledForSelectedAll": true
+				}));
+              
+              	actionMenuSubItems.addItem(this.getButtonMenuItem({
+					"Click": {"bindTo": "executeComandSelected"},
+                  	"Tag": "--",
+					"Caption": "--",
+					"Enabled": { "bindTo": "isAnySelected" },
+					"IsEnabledForSelectedAll": true
+				}));
+				
 				
 				return actionMenuItems;
 			},
@@ -320,9 +344,63 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 						}]
 				);
 			},
-			
-			createBranch: function(){
-				debugger;
+          
+        	executeComand: function(command){
+				this.showConfirmationDialog("Выполнить \"" + command + "\"?",
+					function(result) {
+						if(result === Terrasoft.MessageBoxButtons.YES.returnCode){
+							this.callService({
+								serviceName: "GitHelperService",
+								methodName: "ExecuteCommand",
+								data: { command: command }
+							}, function(res){
+								this.hideBodyMask();
+								if(res.ExecuteCommandResult !== "OK"){
+									this.Terrasoft.utils.showInformation(res.ExecuteCommandResult);
+								}
+								this.reloadGridData();
+							}, this);
+						}
+					}, [{
+							className: "Terrasoft.Button",
+							caption: "Да",
+							returnCode: "yes"
+						},
+						{
+							className: "Terrasoft.Button",
+							caption: "Нет",
+							returnCode: "cancel"
+						}]
+				);
+			},
+          
+          	executeComandSelected: function(command){
+				this.showConfirmationDialog("Выполнить \"" + command + "\" для выделенных записей?",
+					function(result) {
+						if(result === Terrasoft.MessageBoxButtons.YES.returnCode){
+							this.callService({
+								serviceName: "GitHelperService",
+								methodName: "ExecuteItemsCommand",
+								data: { command: command, items: this.getSelectedPaths() }
+							}, function(res){
+								this.hideBodyMask();
+								if(res.ExecuteItemsCommandResult !== "OK"){
+									this.Terrasoft.utils.showInformation(res.ExecuteItemsCommandResult);
+								}
+								this.reloadGridData();
+							}, this);
+						}
+					}, [{
+							className: "Terrasoft.Button",
+							caption: "Да",
+							returnCode: "yes"
+						},
+						{
+							className: "Terrasoft.Button",
+							caption: "Нет",
+							returnCode: "cancel"
+						}]
+				);
 			},
 			
 			commitAndPush: function(result, args){
