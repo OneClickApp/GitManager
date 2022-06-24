@@ -120,6 +120,13 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					"Enabled": true,
 					"IsEnabledForSelectedAll": true
 				}));
+              
+              	actionMenuItems.addItem(this.getButtonMenuItem({
+					"Click": {"bindTo": "clone"},
+					"Caption": "Клонировать",
+					"Enabled": { "bindTo": "isRepoSet" },
+					"IsEnabledForSelectedAll": true
+				}));
 				
 				actionMenuItems.addItem(this.getButtonMenuItem({
 					Type: "Terrasoft.MenuSeparator",
@@ -470,7 +477,6 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 			},
 			
 			readSettings: function(){
-				
 				this.callService({
 					serviceName: "GitHelperService",
 					methodName: "ReadSettings",
@@ -479,11 +485,45 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					this.settings = JSON.parse(res.ReadSettingsResult);
 					
 				}, this);
-				
+			},
+          
+          	isRepoSet: function(){
+              	if(this.settings && this.settings.repoUrl){
+              		return true;
+                }
+              	return false;
+            },
+          
+          	clone: function(){
+				this.showConfirmationDialog("Клонировать репозиторий \"" + this.settings.repoUrl + "\"?",
+					function(result) {
+						if(result === Terrasoft.MessageBoxButtons.YES.returnCode){
+							this.callService({
+								serviceName: "GitHelperService",
+								methodName: "GitClone",
+								data: { }
+							}, function(res){
+								this.hideBodyMask();
+								if(res.GitCloneResult !== "OK"){
+									this.Terrasoft.utils.showInformation(res.GitCloneResult);
+								}
+								this.reloadGridData();
+							}, this);
+						}
+					}, [{
+							className: "Terrasoft.Button",
+							caption: "Да",
+							returnCode: "yes"
+						},
+						{
+							className: "Terrasoft.Button",
+							caption: "Нет",
+							returnCode: "cancel"
+						}]
+				);
 			},
 			
 			saveSettings: function(result, args){
-				
 				if(result === Terrasoft.MessageBoxButtons.YES.returnCode){
 					var password = this.settings.password;
 					this.settings = {};

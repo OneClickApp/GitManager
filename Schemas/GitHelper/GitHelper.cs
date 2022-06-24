@@ -10,6 +10,8 @@ namespace Terrasoft.Configuration
 	using Newtonsoft.Json.Converters;
 	using System.Threading;
 	using Terrasoft.Messaging.Common;
+	using System.IO;
+
 	public class GitHelper
 	{
 		string workingDirectory;
@@ -64,6 +66,19 @@ namespace Terrasoft.Configuration
 		public OperationResult GitExecuteCommand(string command)
 		{
 			return RunGit(command);
+		}
+
+		public OperationResult GitClone(string repoUrl)
+		{
+			var tempDir = Path.Combine(new DirectoryInfo(workingDirectory).Parent.FullName, Guid.NewGuid().ToString());
+
+			MoveAllFiles(workingDirectory, tempDir);
+
+			var result = RunGit("clone " + repoUrl);
+
+			MoveAllFiles(tempDir, workingDirectory);
+
+			return result;
 		}
 
 		public OperationResult GitRestore(List<GitItem> items)
@@ -255,6 +270,37 @@ namespace Terrasoft.Configuration
 			if (System.IO.Directory.Exists(System.IO.Path.Combine(workingDirectory, path))) { return ItemType.Directory; }
 
 			return ItemType.None;
+		}
+
+		private void MoveAllFiles(string from, string to)
+		{
+			var dirInfo = new DirectoryInfo(to);
+			if (dirInfo.Exists == false)
+			{
+				Directory.CreateDirectory(to);
+			}
+
+			var files = Directory.GetFiles(from, "*.*", SearchOption.TopDirectoryOnly).ToList();
+
+			foreach (string file in files)
+			{
+				var mFile = new FileInfo(file);
+				if (new FileInfo(dirInfo + "\\" + mFile.Name).Exists == false)
+				{
+					mFile.MoveTo(dirInfo + "\\" + mFile.Name);
+				}
+			}
+
+			var directories = Directory.GetDirectories(from).ToList();
+
+			foreach (string dir in directories)
+			{
+				var mdir = new DirectoryInfo(dir);
+				if (new DirectoryInfo(dirInfo + "\\" + mdir.Name).Exists == false)
+				{
+					mdir.MoveTo(dirInfo + "\\" + mdir.Name);
+				}
+			}
 		}
 
 		private OperationResult RunGit(string command)

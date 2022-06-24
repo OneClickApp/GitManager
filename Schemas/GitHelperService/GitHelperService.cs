@@ -383,5 +383,15 @@ namespace Terrasoft.Configuration
 
 			return "OK";
 		}
+
+		[OperationContract]
+		[WebInvoke(Method = @"POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+		public string GitClone()
+		{
+			var git = new GitHelper(WorkingDirectory);
+			git.GitClone(RepoUrl);
+
+			return "OK";
+		}
 	}
 }
