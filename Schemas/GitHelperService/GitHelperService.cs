@@ -364,5 +364,24 @@ namespace Terrasoft.Configuration
 
 			return Newtonsoft.Json.JsonConvert.SerializeObject(response);
 		}
+
+		[OperationContract]
+		[WebInvoke(Method = @"POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+		public string ExecuteCommand(string command)
+		{
+			var git = new GitHelper(WorkingDirectory);
+			git.GitExecuteCommand(command);
+
+			return "OK";
+		}
+
+		[OperationContract]
+		[WebInvoke(Method = @"POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+		public string ExecuteItemsCommand(string command, List<string> items)
+		{
+			var git = new GitHelper(WorkingDirectory);
+
+			return "OK";
+		}
 	}
 }
