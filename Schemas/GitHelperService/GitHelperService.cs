@@ -315,6 +315,18 @@ namespace Terrasoft.Configuration
 			return "OK";
 		}
 
+		private void GitConfig()
+		{
+			var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(ReadSettings());
+
+			var git = new GitHelper(WorkingDirectory);
+
+			if (settings.ContainsKey("email") && settings.ContainsKey("name"))
+			{
+				git.GitConfig(settings["email"].ToString(), settings["name"].ToString());
+			}
+		}
+
 		[OperationContract]
 		[WebInvoke(Method = @"POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
 		public string ReadSettings()
@@ -340,6 +352,7 @@ namespace Terrasoft.Configuration
 		[WebInvoke(Method = @"POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
 		public string GetChangedItems()
 		{
+			GitConfig();
 			var git = new GitHelper(WorkingDirectory);
 			var items = git.GetChangedItems();
 
