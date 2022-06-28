@@ -394,6 +394,26 @@ namespace Terrasoft.Configuration
 		{
 			var git = new GitHelper(WorkingDirectory);
 
+			if (command == "delete")
+			{
+				foreach (var item in items)
+				{
+					try
+					{
+						if (System.IO.File.Exists(item))
+						{
+							System.IO.File.Delete(item);
+						}
+
+						if (System.IO.Directory.Exists(item))
+						{
+							System.IO.Directory.Delete(item, true);
+						}
+					}
+					catch { }
+				}
+			}
+
 			return "OK";
 		}
 
