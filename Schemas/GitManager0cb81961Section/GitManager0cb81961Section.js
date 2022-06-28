@@ -133,14 +133,6 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					Visible: true
 				}));
 				
-				//actionMenuItems.addItem(this.getButtonMenuItem({
-				//	"Click": {"bindTo": "createBranch"},
-				//	"Caption": "Создать ветку",
-				//	"Enabled": true,
-				//	"IsEnabledForSelectedAll": true
-				//}));
-				
-				
 				actionMenuItems.addItem(this.getButtonMenuItem({
 					"Click": {"bindTo": "updateFromGit"},
 					"Caption": "Обновить из Git",
@@ -182,13 +174,13 @@ define("GitManager0cb81961Section", ["GitManager0cb81961SectionResources"], func
 					"IsEnabledForSelectedAll": true
 				}));
               
-              	//actionMenuSubItems.addItem(this.getButtonMenuItem({
-				//	"Click": {"bindTo": "executeComandSelected"},
-                //  	"Tag": "--",
-				//	"Caption": "--",
-				//	"Enabled": { "bindTo": "isAnySelected" },
-				//	"IsEnabledForSelectedAll": true
-				//}));
+              	actionMenuSubItems.addItem(this.getButtonMenuItem({
+					"Click": {"bindTo": "executeComandSelected"},
+                  	"Tag": "delete",
+					"Caption": "Удалить выбранные",
+					"Enabled": { "bindTo": "isAnySelected" },
+					"IsEnabledForSelectedAll": true
+				}));
 				
 				return actionMenuItems;
 			},
